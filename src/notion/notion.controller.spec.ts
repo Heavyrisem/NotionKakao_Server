@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { CreateNotionDto } from './dto/create-notion.dto';
 import { NotionController } from './notion.controller';
 
 describe('NotionController', () => {
@@ -12,7 +13,9 @@ describe('NotionController', () => {
     controller = module.get<NotionController>(NotionController);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  describe('notion controller test', () => {
+    it('/create', () => {
+      expect(controller.create(new CreateNotionDto())).toBe("SUCCESS");
+    })
   });
 });

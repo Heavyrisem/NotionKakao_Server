@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { CreateNotionDto } from './dto/create-notion.dto';
 import { NotionService } from './notion.service';
 
 describe('NotionService', () => {
@@ -12,7 +13,9 @@ describe('NotionService', () => {
     service = module.get<NotionService>(NotionService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('데이터 생성 테스트', () => {
+    const dto = new CreateNotionDto();
+
+    expect(service.createBoardData(dto)).toBe(true);
   });
 });
