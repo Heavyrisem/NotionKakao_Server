@@ -82,7 +82,9 @@
       "^@app/common-config(|/.*)$": "<rootDir>/lib/common-config/$1"
     },
     "modulePaths": [
-      "<rootDir>"
+      "<rootDir>",
+      "<rootDir>/lib",
+      "lib"
     ]
   }
 }
