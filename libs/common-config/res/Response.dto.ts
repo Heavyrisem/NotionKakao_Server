@@ -1,34 +1,34 @@
-import { ResponseStatus } from './ResponseStatus';
 import { Exclude, Expose } from 'class-transformer';
+import { HttpStatus } from '@nestjs/common';
 
 export class ResponseDto<T> {
     @Exclude() private readonly _statusCode: string;
     @Exclude() private readonly _message: string;
     @Exclude() private readonly _data: T;
 
-    private constructor(status: ResponseStatus, message: string, data: T) {
-        this._statusCode = ResponseStatus[status];
+    private constructor(status: HttpStatus, message: string, data: T) {
+        this._statusCode = HttpStatus[status];
         this._message = message;
         this._data = data;
     }
 
     static OK(): ResponseDto<string> {
-        return new ResponseDto<string>(ResponseStatus.OK, '', '');
+        return new ResponseDto<string>(HttpStatus.OK, '', '');
     }
 
     static OK_WITH<T>(data: T): ResponseDto<T> {
-        return new ResponseDto<T>(ResponseStatus.OK, '', data);
+        return new ResponseDto<T>(HttpStatus.OK, '', data);
     }
 
     static ERROR(): ResponseDto<string> {
-        return new ResponseDto<string>(ResponseStatus.SERVER_ERROR, '서버 에러가 발생했습니다.', '');
+        return new ResponseDto<string>(HttpStatus.INTERNAL_SERVER_ERROR, '서버 에러가 발생했습니다.', '');
     }
 
-    static ERROR_WITH(message: string, code: ResponseStatus = ResponseStatus.SERVER_ERROR): ResponseDto<string> {
+    static ERROR_WITH(message: string, code: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR): ResponseDto<string> {
         return new ResponseDto<string>(code, message, '');
     }
 
-    static ERROR_WITH_DATA<T>(message: string, code: ResponseStatus = ResponseStatus.SERVER_ERROR, data: T): ResponseDto<T> {
+    static ERROR_WITH_DATA<T>(message: string, code: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR, data: T): ResponseDto<T> {
         return new ResponseDto<T>(code, message, data);
     }
 

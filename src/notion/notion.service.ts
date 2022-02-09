@@ -9,7 +9,10 @@ export class NotionService {
     async createBoardData(createNotionDto: CreateNotionDto): Promise<boolean> {
         return this.Client.pages
             .create(createNotionDto.toObject())
-            .then(() => false)
-            .catch(() => false);
+            .then(() => true)
+            .catch((err) => {
+                console.log(err);
+                return false;
+            });
     }
 }

@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ResponseDto } from 'libs/common-config/res/Response.dto';
 import { CreateNotionDto } from './dto/create-notion.dto';
@@ -10,19 +10,18 @@ export class NotionController {
 
     @Post()
     async create(@Body() createNotionDto: CreateNotionDto): Promise<ResponseDto<string>> {
-        const createResult = this.notionService.createBoardData(createNotionDto);
+        const createResult = await this.notionService.createBoardData(createNotionDto);
 
-        console.log(createResult);
         if (createResult) {
             return ResponseDto.OK();
         } else {
-            throw new HttpException('오류가 발생했습니다.', HttpStatus.BAD_REQUEST);
+            return ResponseDto.ERROR_WITH('오류가 발생했습니다.', HttpStatus.BAD_REQUEST);
         }
     }
 
-    @Get('/search')
-    async search(@Query('keyword') keyword: string) {
-        console.log(keyword);
-        return keyword;
-    }
+    // @Get('/search')
+    // async search(@Query('keyword') keyword: string) {
+    //     console.log(keyword);
+    //     return keyword;
+    // }
 }

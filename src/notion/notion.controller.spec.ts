@@ -29,10 +29,10 @@ describe('NotionController', () => {
             expect(await controller.create(createNotionDto)).toBe(true);
         });
 
-        it('/search', async () => {
-            const SearchKeyWord = 'TestKeyWord';
+        // it('/search', async () => {
+        //     const SearchKeyWord = 'TestKeyWord';
 
-            expect(await controller.search(SearchKeyWord)).toBe(SearchKeyWord);
-        });
+        //     expect(await controller.search(SearchKeyWord)).toBe(SearchKeyWord);
+        // });
     });
 });
