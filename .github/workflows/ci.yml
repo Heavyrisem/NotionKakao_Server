@@ -46,6 +46,8 @@ jobs:
         run: |
             echo $NOTION_TOKEN
             echo $DB_ID
+            echo ls
+            ls
 
       # 여기서 실행되는 커맨드에 대한 설명으로, Workflow에 표시됩니다.
       - name: Jest Unit test
