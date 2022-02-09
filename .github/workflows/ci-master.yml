@@ -95,7 +95,7 @@ jobs:
       - name: Docker run
         run: |
           docker ps -q --filter "name=NotionKakao_Server" | grep -q . && docker stop NotionKakao_Server && docker rm -fv NotionKakao_Server
-          docker run -d -p 8000:3000 --name NotionKakao_Server --env-file=.env --restart always ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+          docker run -d -p 8000:3000 --name NotionKakao_Server --restart always ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
           
   cleanup:
     needs: [ build, deploy ]
