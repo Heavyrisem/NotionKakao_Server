@@ -43,7 +43,7 @@ jobs:
             echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
             echo "DB_ID=${{ secrets.DB_ID }}" >> .env
             pwd
-            ls
+            ls -la
             cat .env
 
       # - name: initialize environments
