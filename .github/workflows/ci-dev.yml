@@ -1,5 +1,5 @@
 # Repository의 Actions 탭에 나타날 Workflow 이름으로 필수 옵션은 아닙니다.
-name: CI
+name: CI-develop
 
 # Workflow를 실행시키기 위한 Event 목록입니다.
 on:
@@ -42,12 +42,12 @@ jobs:
             echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> $GITHUB_ENV
             echo "DB_ID=${{ secrets.DB_ID }}" >> $GITHUB_ENV
 
-      - name: check env
-        run: |
-            echo $NOTION_TOKEN
-            echo $DB_ID
-            echo ls
-            ls
+      # - name: check env
+      #   run: |
+      #       echo $NOTION_TOKEN
+      #       echo $DB_ID
+      #       echo ls
+      #       ls
 
       # 여기서 실행되는 커맨드에 대한 설명으로, Workflow에 표시됩니다.
       - name: Jest Unit test
