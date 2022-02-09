@@ -75,12 +75,12 @@ jobs:
     name: Deploy
     runs-on: [ self-hosted, ubuntu-server ]
     steps:
-      - name: Login to ghcr
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_PAT }}
+      # - name: Login to ghcr
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GHCR_PAT }}
       - name: Docker run
         run: |
           docker ps -q --filter "name=NotionKakao_Server" | grep -q . && docker stop NotionKakao_Server && docker rm -fv NotionKakao_Server
