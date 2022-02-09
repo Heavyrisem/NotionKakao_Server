@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { ResponseDto } from 'libs/common-config/res/Response.dto';
+import { ResponseDto } from '@app/common-config/res/response.dto';
 import { CreateNotionDto } from './dto/create-notion.dto';
 import { NotionService } from './notion.service';
 

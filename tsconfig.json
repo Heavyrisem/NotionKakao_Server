@@ -8,8 +8,9 @@
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
     "sourceMap": true,
+    "moduleResolution": "node",
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -19,7 +20,7 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@app/common-config": [
-        "lib/common-config/"
+        "lib/common-config"
       ],
       "@app/common-config/*": [
         "lib/common-config/*"
