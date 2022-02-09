@@ -60,6 +60,8 @@ jobs:
         run: |
             echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
             echo "DB_ID=${{ secrets.DB_ID }}" >> .env
+            echo pwd
+            echo ls
             cat .env
         shell: bash
       - name: Build and push
