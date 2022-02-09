@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
 env:
-  DOCKER_IMAGE: Heavyrisem/NotionKakao_Server
+  DOCKER_IMAGE: heavyrisem/notionkakao_server
   VERSION: ${{ github.sha }}
 
 jobs:
