@@ -42,6 +42,11 @@ jobs:
             echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> $GITHUB_ENV
             echo "DB_ID=${{ secrets.DB_ID }}" >> $GITHUB_ENV
 
+      - name: check env
+        run: |
+            echo $NOTION_TOKEN
+            echo $DB_ID
+
       # 여기서 실행되는 커맨드에 대한 설명으로, Workflow에 표시됩니다.
       - name: Jest Unit test
         run:  yarn test
