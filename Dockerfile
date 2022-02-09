@@ -6,6 +6,4 @@ COPY . .
 RUN yarn install
 RUN yarn build
 
-RUN cat .env
-
 CMD ["yarn", "start:prod"]
