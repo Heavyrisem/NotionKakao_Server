@@ -17,9 +17,8 @@ on:
 
 # 해당 Workflow의 하나 이상의 Job 목록입니다.
 jobs:
-  # Job 이름으로, build라는 이름으로 Job이 표시됩니다.
-  build:
-    
+  # Job 이름
+  test:
   
     # Runner가 실행되는 환경을 정의하는 부분입니다.
     runs-on: ubuntu-latest
@@ -40,8 +39,8 @@ jobs:
 
       - name: initialize environments
         run: |
-            echo "NOTION_TOKEN=${{ secret.NOTION_TOKEN }}" >> $GITHUB_ENV
-            echo "DB_ID=${{ secret.DB_ID }}" >> $GITHUB_ENV
+            echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> $GITHUB_ENV
+            echo "DB_ID=${{ secrets.DB_ID }}" >> $GITHUB_ENV
 
       # 여기서 실행되는 커맨드에 대한 설명으로, Workflow에 표시됩니다.
       - name: Jest Unit test
