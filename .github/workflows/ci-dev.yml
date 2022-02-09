@@ -37,19 +37,10 @@ jobs:
       - name: install dependencies
         run: yarn install
 
-        
-      - name: Create env file
+      - name: initialize environments
         run: |
-            echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
-            echo "DB_ID=${{ secrets.DB_ID }}" >> .env
-            pwd
-            ls -la
-            cat .env
-
-      # - name: initialize environments
-      #   run: |
-      #       echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> $GITHUB_ENV
-      #       echo "DB_ID=${{ secrets.DB_ID }}" >> $GITHUB_ENV
+            echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> $GITHUB_ENV
+            echo "DB_ID=${{ secrets.DB_ID }}" >> $GITHUB_ENV
 
       # - name: check env
       #   run: |

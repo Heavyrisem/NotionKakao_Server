@@ -25,22 +25,13 @@ jobs:
       - name: install dependencies
         run: yarn install
 
-        
-      - name: Create env file
+      - name: initialize environments
         run: |
-            echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
-            echo "DB_ID=${{ secrets.DB_ID }}" >> .env
-            pwd
-            ls -la
-            cat .env
-
-      # - name: initialize environments
-      #   run: |
-      #       echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> $GITHUB_ENV
-      #       echo "DB_ID=${{ secrets.DB_ID }}" >> $GITHUB_ENV
+            echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> $GITHUB_ENV
+            echo "DB_ID=${{ secrets.DB_ID }}" >> $GITHUB_ENV
             
-      # - name: Jest Unit test
-      #   run:  yarn test
+      - name: Jest Unit test
+        run:  yarn test
 
   build:
     needs: test
@@ -65,13 +56,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
-      - name: Create env file
-        run: |
-            echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
-            echo "DB_ID=${{ secrets.DB_ID }}" >> .env
-            echo "pwd"
-            echo "ls"
-            cat .env
         shell: bash
       - name: Build and push
         id: docker_build
@@ -95,7 +79,7 @@ jobs:
       - name: Docker run
         run: |
           docker ps -q --filter "name=NotionKakao_Server" | grep -q . && docker stop NotionKakao_Server && docker rm -fv NotionKakao_Server
-          docker run -d -p 8000:3000 --name NotionKakao_Server --restart always ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+          docker run -d -p 8000:3000 --name NotionKakao_Server -e NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} -e DB_ID=${{ secrets.DB_ID }} --restart always ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
           
   cleanup:
     needs: [ build, deploy ]
