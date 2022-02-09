@@ -33,6 +33,17 @@ jobs:
       - name: Jest Unit test
         run:  yarn test
 
+      
+  cleanup:
+    needs: [ build, deploy ]
+    name: Clean up docker images
+    runs-on: [ self-hosted, ubuntu-server ]
+    steps:
+      -   name: Clean up docker images
+          run: |
+            docker ps -q --filter "name=NotionKakao_Server" | grep -q . && docker stop NotionKakao_Server && docker rm -fv NotionKakao_Server
+            docker rmi $(docker images --filter=reference="${{ env.DOCKER_IMAGE }}:* --format {{.ID}} -q)
+
   build:
     needs: test
     name: Build
@@ -76,15 +87,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
       - name: Docker run
-        run: |
-          docker ps -q --filter "name=NotionKakao_Server" | grep -q . && docker stop NotionKakao_Server && docker rm -fv NotionKakao_Server
+        run:
           docker run -d -p 8000:3000 --name NotionKakao_Server -e NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} -e DB_ID=${{ secrets.DB_ID }} --restart always ${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
           
-  cleanup:
-    needs: [ build, deploy ]
-    name: Clean up docker images
-    runs-on: [ self-hosted, ubuntu-server ]
-    steps:
-      -   name: Clean up docker images
-          run:
-            docker rmi $(docker images --filter "before=${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}" --filter=reference="${{ env.DOCKER_IMAGE }}:*" -q)
