@@ -45,7 +45,6 @@ jobs:
             pwd
             ls
             cat .env
-        shell: bash
 
       # - name: initialize environments
       #   run: |
