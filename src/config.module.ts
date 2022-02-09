@@ -11,6 +11,7 @@ import * as Joi from 'joi';
                 NODE_ENV: Joi.string().valid('dev', 'prod', 'test').required(),
                 NOTION_TOKEN: Joi.string().required(),
                 DB_ID: Joi.string().required(),
+                PORT: Joi.number(),
             }),
         }),
     ],
