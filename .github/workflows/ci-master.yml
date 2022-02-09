@@ -35,7 +35,7 @@ jobs:
 
       
   cleanup:
-    needs: [ build, deploy ]
+    needs: test
     name: Clean up docker images
     runs-on: [ self-hosted, ubuntu-server ]
     steps:
@@ -45,7 +45,7 @@ jobs:
             docker rmi $(docker images --filter=reference="${{ env.DOCKER_IMAGE }}:* --format {{.ID}} -q)
 
   build:
-    needs: test
+    needs: cleanup
     name: Build
     runs-on: ubuntu-latest
     steps:
