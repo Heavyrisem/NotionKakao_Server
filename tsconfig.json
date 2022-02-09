@@ -20,10 +20,10 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@app/common-config": [
-        "src/lib/common-config"
+        "lib/common-config"
       ],
       "@app/common-config/*": [
-        "src/lib/common-config/*"
+        "lib/common-config/*"
       ]
     }
   }
