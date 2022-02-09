@@ -83,7 +83,7 @@ jobs:
   cleanup:
     needs: [ build, deploy ]
     name: Clean up docker images
-    runs-on: [ self-hosted, development ]
+    runs-on: [ self-hosted, ubuntu-server ]
     steps:
       -   name: Clean up docker images
           run:
