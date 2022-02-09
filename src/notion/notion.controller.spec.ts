@@ -1,3 +1,4 @@
+import { ResponseDto } from '@app/common-config/res/response.dto';
 import { Test, TestingModule } from '@nestjs/testing';
 import { plainToInstance } from 'class-transformer';
 import { ConfigurationModule } from '../../src/config.module';
@@ -25,8 +26,9 @@ describe('NotionController', () => {
                 content: 'controller test',
             };
             const createNotionDto = plainToInstance(CreateNotionDto, TestData);
+            const successResponseDto = ResponseDto.OK();
 
-            expect(await controller.create(createNotionDto)).toBe(true);
+            expect(await controller.create(createNotionDto)).toStrictEqual(successResponseDto);
         });
 
         // it('/search', async () => {
