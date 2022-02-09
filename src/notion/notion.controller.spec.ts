@@ -1,4 +1,4 @@
-import { ResponseDto } from '@app/common-config/res/response.dto';
+import { ResponseDto } from '../../lib/common-config/res/response.dto';
 import { Test, TestingModule } from '@nestjs/testing';
 import { plainToInstance } from 'class-transformer';
 import { ConfigurationModule } from '../../src/config.module';
