@@ -78,7 +78,7 @@ jobs:
                   echo "DB_ID=${{ secrets.DB_ID }}" >> .env
 
             - name: Docker run
-              run: docker run -d -p 8001:3000 --name ${{ env.DOCKER_NAME }} --env-file=.env --restart always ${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.tags }}
+              run: docker run -d -p 8000:3000 --name ${{ env.DOCKER_NAME }} --env-file=.env --restart always ${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.tags }}
 
     discordMessage:
         needs: deploy
