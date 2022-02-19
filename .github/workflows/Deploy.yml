@@ -69,10 +69,10 @@ jobs:
                   password: ${{ secrets.GHCR_PAT }}
 
             - name: initialize environments
-                run: |
-                    rm -rf .env
-                    echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
-                    echo "DB_ID=${{ secrets.DB_ID }}" >> .env
+              run: |
+                  rm -rf .env
+                  echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
+                  echo "DB_ID=${{ secrets.DB_ID }}" >> .env
 
             - name: Get Pushed Tags Version
               run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
