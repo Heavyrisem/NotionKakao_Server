@@ -78,7 +78,7 @@ jobs:
               run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
             - name: Docker run
-              run: docker run -d -p 8000:3000 --name ${{ env.DOCKER_NAME }} --env-file=.env --restart always ${{ env.DOCKER_IMAGE }}:${{ env.RELEASE_VERSION }}
+              run: docker run -d -p 8888:3000 --name ${{ env.DOCKER_NAME }} --env-file=.env --restart always ${{ env.DOCKER_IMAGE }}:${{ env.RELEASE_VERSION }}
 
     discordMessage:
         needs: deploy
